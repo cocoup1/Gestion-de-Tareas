@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+from .forms import TaskForm
 
 # Create your views here.
 
@@ -59,4 +60,4 @@ def iniciar_session(request):
             return redirect('tasks')
 
 def crear_tarea(request):
-    return render(request, 'crear_tarea.html')
+    return render(request, 'crear_tarea.html', {'form': TaskForm})
