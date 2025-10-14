@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from .forms import TaskForm
+from .models import Task
 
 # Create your views here.
 
@@ -38,7 +39,9 @@ def registrarse(request):
                        )
             
 def tasks(request):
-    return render(request, 'tasks.html')
+
+    tareas= Task.objects.filter(user=request.user, fecha_completado__isnull=True)
+    return render(request, 'tasks.html', {'tareas': tareas})
 
 def cerrar_session(request):
     logout(request)
@@ -60,4 +63,17 @@ def iniciar_session(request):
             return redirect('tasks')
 
 def crear_tarea(request):
-    return render(request, 'crear_tarea.html', {'form': TaskForm})
+    if request.method == 'GET':
+        return render(request, 'crear_tarea.html',{'form': TaskForm})
+    else:
+        try:
+            form = TaskForm(request.POST)
+            new_task = form.save(commit=False)
+            new_task.user = request.user
+            new_task.save()
+            return redirect('tasks')
+
+        except ValueError:
+            return render(request, 'crear_tarea.html',{
+                'form': TaskForm,
+                'error': 'Por favor ingresa datos validos'})
