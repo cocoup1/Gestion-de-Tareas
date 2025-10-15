@@ -12,12 +12,17 @@
             <li>
                 <a href = '/'>Home</a>
             </li>
+            
+
+            {% if user.is_authenticated %}
+
+            <li>
+                <a href = "/tasks/crear/">Crear Tarea</a>
+            </li>
             <li>
                 <a href = '/tasks/'>Tasks</a>
 
             </li>
-
-            {% if user.is_authenticated %}
             <li>
                 
                 <a href = '/cerrar_session/'>Cerrar Sesión</a>

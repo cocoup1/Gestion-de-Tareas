@@ -2,14 +2,23 @@
 
 {% block content %}
 
-<h1>TASKS</h1>
+<h1 style="color:rgb(94, 21, 21); font-family: Georgia,serif">Tareas</h1>
 
 <ul>
     {% for tarea in tareas %}
     <li>
-        <h1>{{tarea.titulo}}</h1>
-        <p>{{tarea.descripcion}}</p>
-        <p>{{tarea.user}}</p>
+        <a href="{% url 'detalle_tarea' tarea.id %}">
+            {% if tarea.important %}
+            <strong style="color: red;">{{tarea.titulo}}</strong>
+
+            {% else %}
+                {{tarea.titulo}}
+            {% endif %}
+            
+            <p>{{tarea.descripcion}}</p>
+            <p>{{tarea.user}}</p>
+            </a>
+        
 
 
     </li>

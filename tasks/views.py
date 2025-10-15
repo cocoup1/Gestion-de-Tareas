@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
@@ -77,3 +77,23 @@ def crear_tarea(request):
             return render(request, 'crear_tarea.html',{
                 'form': TaskForm,
                 'error': 'Por favor ingresa datos validos'})
+
+def detalle_tarea(request, tarea_id):#Permite mostar el titulo de una tarea
+    if request.method == 'GET':
+        # tarea=Task.objects.get(pk=tarea_id)  #solo muestra las tarea que tiene id si no esta tumba servidor
+        tarea = get_object_or_404(Task, pk=tarea_id) #si no existe tarea id solo muestra 404, no cae servidor
+        form=TaskForm(instance=tarea)
+        return render(request, 'detalle_tarea.html', {'tarea':tarea, 'form': form})
+    else:
+        try:
+            tarea = get_object_or_404(Task, pk=tarea_id) #buscar en  Task la pk que coincida con tarea_id, si la obtiene guardar en tarea
+            form = TaskForm(request.POST, instance=tarea) #TaskForm va recibir todos los datos que vienen en POST y va decir que es una instancia de Task. Genera un nuevo form
+            form.save()# el nuevo formulario se guarda
+            return redirect('tasks')
+        except ValueError:
+            tarea = get_object_or_404(Task, pk=tarea_id)
+            form = TaskForm(instance=tarea)
+            return render(request, 'detalle_tarea.html', {
+                'tarea':tarea,
+                'form': form,
+                'error': "Error al actualizar tarea"})
