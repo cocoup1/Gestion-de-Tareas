@@ -5,7 +5,7 @@
 <h1>Tareas Pendientes</h1>
 
 <ul>
-    {% for tarea in tareas %}
+    {% for cont in tareas %}
     <li>
         <a href="{% url 'detalle_tarea' tarea.id %}">
             {% if tarea.important %}
@@ -30,4 +30,5 @@
 </ul>
 
 
+<h1>TITULO DE PREUBA</h1>
 {% endblock %}
