@@ -2,14 +2,26 @@
 
 {% block content %}
 
-<h1>TASKS</h1>
+<h1>Tareas Pendientes</h1>
 
 <ul>
     {% for cont in tareas %}
     <li>
-        <h1>{{cont.titulo}}</h1>
-        <p>{{cont.descripcion}}</p>
-        <p>{{cont.user}}</p>
+        <a href="{% url 'detalle_tarea' tarea.id %}">
+            {% if tarea.important %}
+            <strong>{{tarea.titulo}}</strong>
+
+            {% else %}
+                {{tarea.titulo}}
+            {% endif %}
+            
+            <p>{{tarea.descripcion}}</p>
+            <p>{{tarea.user}}</p>
+            <p>{{tarea.fecha_completado|date:'M d Y:i'}}</p>
+            
+
+            </a>
+        
 
 
     </li>
