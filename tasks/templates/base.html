@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <!-- <nav class="navbar navbar-expand-lg bg-dark navbar-dark"> # pinta de color negro -->
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href='/'>Mi App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,23 +22,24 @@
             
             {% if user.is_authenticated %}
 
-            <li class="nav-item">
-                <a href = "/tasks/crear/" class="nav-link">Crear Tarea</a>
+             <li class="nav-item">
+                <a href = '/tasks/' class="nav-link">Tareas Pendientes</a>
             </li>
+
             <li class="nav-item">
                 <a href = "/listar_tarea_completa/" class="nav-link">Tareas Completadas</a>
             </li>
-            <li class="nav-item">
-                <a href = '/tasks/' class="nav-link">Tareas</a>
 
+            <li class="nav-item">
+                <a href = "/tasks/crear/" class="nav-link">Crear Tarea</a>
             </li>
+            
+           
             <li class="nav-item">
                
                 <a href = '/cerrar_session/' class="nav-link">Cerrar Sesión</a>
             </li>
-            <li>                
-                <a href = '#'>SOY UN MENU DE PRUEBA</a>
-            </li>
+
             {% else %}
 
             <li class="nav-item">

@@ -2,33 +2,37 @@
 
 {% block content %}
 
-<h1>Tareas Pendientes</h1>
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
 
-<ul>
-    {% for cont in tareas %}
-    <li>
-        <a href="{% url 'detalle_tarea' tarea.id %}">
-            {% if tarea.important %}
-            <strong>{{tarea.titulo}}</strong>
+            <h1 class="text-center display-3 py-5">Tareas Pendientes</h1>
 
-            {% else %}
-                {{tarea.titulo}}
-            {% endif %}
-            
-            <p>{{tarea.descripcion}}</p>
-            <p>{{tarea.user}}</p>
-            <p>{{tarea.fecha_completado|date:'M d Y:i'}}</p>
-            
+            <ul class="list-group">
+                {% for tarea in tareas %}                   
+                    <a class="list-group-item" href="{% url 'detalle_tarea' tarea.id %}">
+                        <header class="d-flex justify-content-between">
+                            {% if tarea.important %}
+                            <h1 class="fw-bold text-success">{{tarea.titulo}}</h1>                            
+                            {% else %}
+                            <h1 class="fw-bold">{{tarea.titulo}}</h1>
+                            {% endif %}
+                            <p>{{tarea.user}}</p>
+                        </header>
+                        
+                        <p>{{tarea.descripcion}}</p>
+                        
+                        <p>{{tarea.fecha_completado|date:'M d Y:i'}}</p>
+                    
+                    </a>
+                    
+                {% endfor %}
+                
+            </ul>
 
-            </a>
-        
+        </div>
 
+    </div>
+</main>
 
-    </li>
-
-    {% endfor %}
-</ul>
-
-
-<h1>TITULO DE PREUBA</h1>
 {% endblock %}
