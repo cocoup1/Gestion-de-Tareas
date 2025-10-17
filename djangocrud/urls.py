@@ -26,4 +26,9 @@ urlpatterns = [
     path('cerrar_session/', views.cerrar_session, name='cerrar_session'),
     path('iniciar_session/', views.iniciar_session, name='iniciar_session'),
     path('tasks/crear/', views.crear_tarea, name='crear_tarea'),
+    path('tasks/<int:tarea_id>/', views.detalle_tarea, name='detalle_tarea'),
+    #marcar tarea completa
+    path('listar_tarea_completa/', views.listar_tarea_completada, name='listar_tarea_completada'),
+    path('tasks/<int:tarea_id>/completado', views.tarea_completa, name='tarea_completa'),
+    path('tasks/<int:tarea_id>/eliminar', views.eliminar_tarea, name='eliminar_tarea'),
 ]

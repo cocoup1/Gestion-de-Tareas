@@ -2,7 +2,33 @@
 
 {% block content %}
 
-<h1>TASKS</h1>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nulla quaerat dolores aut voluptatem laboriosam nihil assumenda, dolore debitis rerum minima quia error suscipit delectus iste numquam. Voluptatibus, in dolorem.</p>
+<h1>Tareas Pendientes</h1>
 
+<ul>
+    {% for cont in tareas %}
+    <li>
+        <a href="{% url 'detalle_tarea' tarea.id %}">
+            {% if tarea.important %}
+            <strong>{{tarea.titulo}}</strong>
+
+            {% else %}
+                {{tarea.titulo}}
+            {% endif %}
+            
+            <p>{{tarea.descripcion}}</p>
+            <p>{{tarea.user}}</p>
+            <p>{{tarea.fecha_completado|date:'M d Y:i'}}</p>
+            
+
+            </a>
+        
+
+
+    </li>
+
+    {% endfor %}
+</ul>
+
+
+<h1>TITULO DE PREUBA</h1>
 {% endblock %}
