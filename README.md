@@ -23,7 +23,7 @@ Requisitos
 
  Clonar el repositorio
 
-git clone https://github.com/cocoup1/Gestion-de-Tareas
+git clone https://github.com/cocoup1/Gestion-de-Tareas/tree/master
 
 
 Crear entorno virtual
