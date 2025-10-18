@@ -117,6 +117,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+LOGIN_URL = '/iniciar_session/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

@@ -2,7 +2,37 @@
 
 {% block content %}
 
-<h1>TASKS</h1>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nulla quaerat dolores aut voluptatem laboriosam nihil assumenda, dolore debitis rerum minima quia error suscipit delectus iste numquam. Voluptatibus, in dolorem.</p>
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <h1 class="text-center display-3 py-5">Tareas Pendientes</h1>
+
+            <ul class="list-group">
+                {% for tarea in tareas %}                   
+                    <a class="list-group-item" href="{% url 'detalle_tarea' tarea.id %}">
+                        <header class="d-flex justify-content-between">
+                            {% if tarea.important %}
+                            <h1 class="fw-bold text-success">{{tarea.titulo}}</h1>                            
+                            {% else %}
+                            <h1 class="fw-bold">{{tarea.titulo}}</h1>
+                            {% endif %}
+                            <p>{{tarea.user}}</p>
+                        </header>
+                        
+                        <p>{{tarea.descripcion}}</p>
+                        
+                        <p>{{tarea.fecha_completado|date:'M d Y:i'}}</p>
+                    
+                    </a>
+                    
+                {% endfor %}
+                
+            </ul>
+
+        </div>
+
+    </div>
+</main>
 
 {% endblock %}
