@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+# 1. Al inicio del archivo, después de las importaciones existentes
+import os
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +24,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!xlqskk6ac&kmfs0+5ug&kj4vvc(%a6b30+=$bl#^&aa&x7@uj'
+# 2. Reemplazar el SECRET_KEY existente
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!xlqskk6ac&kmfs0+5ug&kj4vvc(%a6b30+=$bl#^&aa&x7@uj')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# 3. Configurar DEBUG para producción
 
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+
+# 4. Configurar ALLOWED_HOSTS
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if not DEBUG:
+    ALLOWED_HOSTS.extend([
+        '.render.com',
+        '.onrender.com',
+    ])
 
 
 # Application definition
@@ -40,8 +53,10 @@ INSTALLED_APPS = [
     'tasks'
 ]
 
+# 7. Middleware para archivos estáticos ('whitenoise.middleware.WhiteNoiseMiddleware')
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',  # ← AGREGAR ESTA LÍNEA
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,14 +86,24 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# 5. Reemplazar la configuración de DATABASES
+if 'DATABASE_URL' in os.environ:
+    # Producción (Render)
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    # Desarrollo local (SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation
@@ -115,9 +140,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Authentication
 LOGIN_URL = '/iniciar_session/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

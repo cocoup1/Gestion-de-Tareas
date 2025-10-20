@@ -1,3 +1,6 @@
+# Documentación local
+documentacion_*.html
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -126,4 +129,7 @@ venv.bak/
 dmypy.json
 
 # Pyre type checker
-.pyre/
+.pyre/djangocrud/settings_local.py
+
+# Static files (generated during deployment)
+staticfiles/

@@ -1,4 +1,4 @@
-Sistema Gestión de Tareas - Django CRUD
+ Sistema Gestión de Tareas - Django CRUD
 
 Una aplicación web moderna para la gestión personal de tareas desarrollada con Django y Bootstrap. Permite a los usuarios registrarse, autenticarse y gestionar sus tareas de manera individual y segura.
 
