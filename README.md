@@ -23,7 +23,7 @@ Requisitos
 
  Clonar el repositorio
 
-git clone https://github.com/cocoup1/Gestion-de-Tareas
+git clone https://github.com/cocoup1/Gestion-de-Tareas/tree/master
 
 
 Crear entorno virtual
@@ -114,12 +114,5 @@ Tecnologías Utilizadas
 - Autorización por usuario:  solo ves tus propias tareas
 - Validación de formularios: en frontend y backend
 - Gestión segura de sesiones
-
-
-
-
-
-
-
 
 
