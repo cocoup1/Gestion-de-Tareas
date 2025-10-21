@@ -1,24 +1,163 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 
-<main class="container py-5">
-    <section class="card card_body">
-        <h1 class="display-1 text-center">Django App</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et tempore sit obcaecati atque nostrum. Totam dicta aut voluptates, veniam doloremque minima, sequi molestiae necessitatibus molestias illum possimus enim modi nesciunt.</p>
-
-        <div class="text-center">
-            <a class="btn btn-primary btn-secondary" href="/iniciar_session/">
-            Iniciar Session
-            </a>
-            <a class="btn btn-primary btn-dark" href="/registrarse/">           
-            Registrarse
-            </a>
-        </button>
+<!-- Hero Section -->
+<section class="hero-gradient py-5" style="background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%); min-height: 80vh;">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold text-white mb-4">Domina Tu Tiempo, Transforma Tu Vida</h1>
+                <p class="lead text-white mb-4">La plataforma inteligente para convertir el caos en productividad. Recupera el control de tu tiempo y alcanza tus metas.</p>
+                
+                <div class="d-flex gap-3 flex-wrap mb-4">
+                    <a class="btn btn-warning btn-lg px-4 py-3 fw-semibold shadow" href="/registrarse/">
+                        <i class="fas fa-rocket me-2"></i>Comenzar Gratis
+                    </a>
+                    <a class="btn btn-outline-light btn-lg px-4 py-3" href="/iniciar_session/">
+                        <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+                    </a>
+                </div>
+                
+                <div class="text-white-50">
+                    <small><i class="fas fa-check me-2"></i>Sin tarjeta de crédito • Configuración en 2 minutos</small>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 text-center">
+                <div class="position-relative">
+                    <img src="{% static 'tasks/images/logo.png' %}" alt="Gestión de Tareas" 
+                         class="img-fluid mb-4" style="max-width: 350px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));">
+                    <div class="position-absolute top-0 start-0 w-100 h-100" 
+                         style="background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 20px;"></div>
+                </div>
+            </div>
         </div>
-    </section>
-</main>
+    </div>
+</section>
+
+<!-- Valor Proposition Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h2 class="display-5 fw-bold text-dark mb-4">El Tiempo es Tu Recurso Más Valioso</h2>
+                <p class="lead text-muted mb-5">En un mundo donde cada minuto cuenta, las personas exitosas tienen algo en común: dominan su tiempo. No dejes que las tareas se acumulen y te abrumen.</p>
+                
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-clock fa-2x text-white"></i>
+                            </div>
+                            <h5 class="fw-bold">Recupera 2+ horas diarias</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-chart-line fa-2x text-white"></i>
+                            </div>
+                            <h5 class="fw-bold">Aumenta productividad 300%</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-shield-alt fa-2x text-white"></i>
+                            </div>
+                            <h5 class="fw-bold">Elimina el estrés</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <div class="bg-danger rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-target fa-2x text-white"></i>
+                            </div>
+                            <h5 class="fw-bold">Alcanza tus metas</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Características que Marcan la Diferencia</h2>
+                <p class="lead text-muted">Herramientas diseñadas para maximizar tu productividad</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                             style="width: 70px; height: 70px;">
+                            <i class="fas fa-tasks fa-2x text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Organización Intuitiva</h5>
+                        <p class="card-text text-muted">Crea, categoriza y prioriza con simplicidad. Tu flujo de trabajo optimizado.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                             style="width: 70px; height: 70px;">
+                            <i class="fas fa-bell fa-2x text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Recordatorios Inteligentes</h5>
+                        <p class="card-text text-muted">Nunca olvides una fecha importante. Notificaciones en el momento perfecto.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                             style="width: 70px; height: 70px;">
+                            <i class="fas fa-chart-pie fa-2x text-white"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Progreso Visual</h5>
+                        <p class="card-text text-muted">Ve tu evolución y mantente motivado. Estadísticas que inspiran acción.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final Section -->
+<section class="py-5 bg-dark text-white">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="display-5 fw-bold mb-3">Tu Futuro Productivo Comienza Hoy</h2>
+                <p class="lead mb-4">Únete a miles de personas que ya transformaron su relación con el tiempo</p>
+                <a href="/registrarse/" class="btn btn-warning btn-lg px-5 py-3 fw-semibold shadow">
+                    <i class="fas fa-rocket me-2"></i>Comenzar Ahora
+                </a>
+                <div class="mt-3">
+                    <small class="text-light"><i class="fas fa-lock me-1"></i>100% Seguro • Cancela cuando quieras</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
