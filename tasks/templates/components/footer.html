@@ -1,0 +1,57 @@
+{% load static %}
+<footer class="bg-dark text-light py-4 mt-5">
+  <div class="container position-relative">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center mb-3 mb-md-0">
+        <a href="/" class="me-3" style="display:inline-block;">
+          <img src="{% static 'tasks/images/logo.png' %}" alt="Logo" style="height:44px; width:auto; object-fit:contain;">
+        </a>
+        <div>
+          <div style="font-weight:600;">Gestión de Tareas</div>
+          <small class="text-muted">&copy; 2025 Tu Empresa</small>
+        </div>
+      </div>
+
+      <!-- Espacio vacío para mantener la estructura -->
+      <div></div>
+    </div>
+    
+    <!-- Redes sociales absolutamente centradas -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center">
+      <div class="mb-1" style="font-size: 14px;">Contáctanos en redes</div>
+      <div>
+        <a href="#" class="text-light me-3 social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram fa-lg"></i>
+        </a>
+        <a href="#" class="text-light me-3 social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+        <a href="#" class="text-light social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook fa-lg"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .social-link:hover {
+    color: #0d6efd !important; /* bootstrap primary */
+    transform: translateY(-2px);
+    transition: all 0.15s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    footer .position-absolute {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      margin-top: 15px;
+    }
+    
+    footer .container > div:first-child {
+      justify-content: center !important;
+    }
+  }
+</style>

@@ -30,7 +30,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!xlqskk6ac&kmfs0+5ug&
 # SECURITY WARNING: don't run with debug turned on in production!
 # 3. Configurar DEBUG para producción
 
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+# Temporal: DEBUG=True para desarrollo local
+           #DEBUG=False para produccion
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
 # 4. Configurar ALLOWED_HOSTS
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
@@ -142,6 +144,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Configuración para archivos estáticos en desarrollo
+STATICFILES_DIRS = [
+    BASE_DIR / "tasks" / "static",
+]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Authentication
