@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!xlqskk6ac&kmfs0+5ug&
 
 # Temporal: DEBUG=True para desarrollo local
            #DEBUG=False para produccion
-DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 # 4. Configurar ALLOWED_HOSTS
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
