@@ -38,6 +38,7 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if not DEBUG:
     ALLOWED_HOSTS.extend([
+        'gestion-tareas-django.azurewebsites.net',
         '.render.com',
         '.onrender.com',
     ])

@@ -1,11 +1,39 @@
 # 🚀 Guía Completa de Deployment - Django CRUD App
 
-## 📋 Tabla de Contenidos
+## �️ Información de Créditos Azure (Respaldo de Facturación)
+
+**Fecha de verificación:** 21 de octubre de 2024  
+**Cuenta:** javcastro.mer@outlook.com  
+**Suscripción ID:** 55714b8e-eaa6-4ec4-a157-0587dd0533f3
+
+### **Créditos Gratuitos Confirmados:**
+- ✅ **Saldo disponible:** $200.00 USD
+- ✅ **Política de cobro:** "Sus créditos de Azure se usarán antes que su método de pago predeterminado"
+- ✅ **Método de pago:** Visa ****7024 (solo se usará DESPUÉS de agotar los $200)
+- ✅ **Estado:** Activo con créditos promocionales
+
+### **Estimación de Costos B1:**
+- **SKU B1 Linux:** ~$13 USD/mes
+- **⚠️ LIMITACIÓN:** Créditos válidos solo 30 días (hasta 20/11/2025)
+- **Duración con créditos:** 30 días máximo
+- **Para testing (1-2 semanas):** ~$6-7 USD del crédito gratuito
+- **Uso completo (30 días):** ~$13 USD del crédito gratuito
+
+### **Evidencia de Respaldo:**
+- Portal Azure muestra "Saldo disponible: 200,00 US$"
+- Confirmación de que los créditos se usan ANTES que la tarjeta
+- Resource Group eliminado correctamente (sin recursos activos previos)
+
+---
+
+## �📋 Tabla de Contenidos
+- [Información de Créditos Azure](#información-de-créditos-azure-respaldo-de-facturación)
 - [Información del Proyecto](#información-del-proyecto)
 - [Prerrequisitos](#prerrequisitos)
 - [Configuración Local](#configuración-local)
 - [Preparación para Producción](#preparación-para-producción)
 - [Deploy en Render.com](#deploy-en-rendercom)
+- [Deploy en Azure](#deploy-en-azure)
 - [Configuración de Monitoreo 24/7](#configuración-de-monitoreo-247)
 - [Troubleshooting](#troubleshooting)
 - [Mantenimiento](#mantenimiento)
@@ -429,6 +457,99 @@ Si necesitas mayor rendimiento:
 - [ ] **Analytics** con Google Analytics
 - [ ] **SEO optimization**
 - [ ] **PWA** (Progressive Web App)
+
+---
+
+## ☁️ Deploy en Azure
+
+### **Configuración Inicial Azure**
+
+**Créditos disponibles:** $200 USD (verificado 21/10/2024)
+
+#### **Paso 1: Autenticación**
+```bash
+# Instalar Azure CLI
+winget install Microsoft.AzureCLI
+
+# Login
+az login
+
+# Verificar suscripción
+az account show
+```
+
+#### **Paso 2: Crear Resource Group**
+```bash
+# Crear grupo de recursos
+az group create --name rg-gestion-tareas --location eastus
+
+# Verificar creación
+az group list --output table
+```
+
+#### **Paso 3: Crear App Service Plan (B1)**
+```bash
+# Crear plan B1 Linux (~$13/mes del crédito gratuito)
+az appservice plan create \
+    --name plan-gestion-tareas \
+    --resource-group rg-gestion-tareas \
+    --sku B1 \
+    --is-linux
+
+# Verificar creación
+az appservice plan list --output table
+```
+
+#### **Paso 4: Crear Web App**
+```bash
+# Crear Web App con Python 3.11
+az webapp create \
+    --resource-group rg-gestion-tareas \
+    --plan plan-gestion-tareas \
+    --name gestion-tareas-django \
+    --runtime "PYTHON|3.11"
+```
+
+#### **Paso 5: Configurar Deployment desde GitHub**
+```bash
+# Configurar deployment continuo
+az webapp deployment source config \
+    --name gestion-tareas-django \
+    --resource-group rg-gestion-tareas \
+    --repo-url https://github.com/cocoup1/crud_prueba \
+    --branch main \
+    --manual-integration
+```
+
+#### **Paso 6: Variables de Entorno**
+```bash
+# Configurar settings de producción
+az webapp config appsettings set \
+    --resource-group rg-gestion-tareas \
+    --name gestion-tareas-django \
+    --settings DJANGO_SETTINGS_MODULE=djangocrud.settings \
+                DEBUG=False \
+                ALLOWED_HOSTS="gestion-tareas-django.azurewebsites.net" \
+                SECRET_KEY="tu-secret-key-aqui"
+```
+
+### **Estimación de Costos Azure**
+- **B1 Linux Plan:** ~$13 USD/mes
+- **⚠️ Con créditos gratuitos:** Solo 30 días (vence 20/11/2025)
+- **Para testing (1-2 semanas):** ~$6-7 del crédito de $200
+- **Después del 20/11/2025:** Se cobrará a tarjeta Visa ****7024
+
+### **Monitoreo de Costos**
+```bash
+# Ver costos actuales
+az consumption usage list --output table
+
+# Configurar alerta de presupuesto
+az consumption budget create \
+    --budget-name "presupuesto-gestion-tareas" \
+    --amount 50 \
+    --time-grain Monthly
+```
 
 ---
 
