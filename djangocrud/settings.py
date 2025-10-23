@@ -39,8 +39,11 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if not DEBUG:
     ALLOWED_HOSTS.extend([
         'gestion-tareas-django.azurewebsites.net',
+        'gestionar-egf3adbrdjg6fzbm.centralus-01.azurewebsites.net',
+        'tareas-e5cvfvapgqfzbjad.westeurope-01.azurewebsites.net',
         '.render.com',
         '.onrender.com',
+        
     ])
 
 
